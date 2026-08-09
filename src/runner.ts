@@ -7,6 +7,7 @@ import { flattenCollection } from '@src/collection/types';
 import type { ResolvedSmokeConfig, SmokeContext, SmokeResult } from '@src/config';
 import { apiFetch } from '@src/http/client';
 import { logger } from '@src/logger';
+import { writeHtmlReport } from '@src/report/html';
 
 export async function runSmoke(config: ResolvedSmokeConfig): Promise<number> {
     for (const envPath of config.envFiles) {
@@ -85,6 +86,11 @@ export async function runSmoke(config: ResolvedSmokeConfig): Promise<number> {
 
     printReport(results);
 
+    if (config.reportHtmlPath !== undefined && config.reportHtmlPath !== '') {
+        writeHtmlReport(results, config.reportHtmlPath);
+        logger.info('Wrote HTML report to %s', config.reportHtmlPath);
+    }
+
     const fails = results.filter(r => r.classification === 'FAIL');
     const warns = results.filter(r => r.classification === 'WARN');
     if (fails.length > 0) {
@@ -158,8 +164,8 @@ async function executeOne(
     let status: number | string;
     let snippet: string;
     let responseText: string | null = null;
+    const fullUrl = url.startsWith('http') ? url : `${config.apiOrigin}${url.startsWith('/') ? '' : '/'}${url}`;
     try {
-        const fullUrl = url.startsWith('http') ? url : `${config.apiOrigin}${url.startsWith('/') ? '' : '/'}${url}`;
         const res = await apiFetch(req.method, fullUrl, headers, body);
         status = res.status;
         responseText = res.text;
@@ -172,9 +178,9 @@ async function executeOne(
     const result: SmokeResult = {
         name: req.key,
         method: req.method,
-        url,
+        url: fullUrl,
         status,
-        classification: classify(req.key, url, status, snippet, config.classifyRules),
+        classification: classify(req.key, fullUrl, status, snippet, config.classifyRules),
         snippet,
     };
     return { result, body: responseText };
@@ -189,7 +195,7 @@ function printReport(results: SmokeResult[]): void {
     logger.info('=== Postman smoke results ===');
     for (const r of results) {
         const st = String(r.status).padStart(4);
-        logger.info('%s %s %s %s', r.classification.padEnd(13), st, r.method.padEnd(6), r.name);
+        logger.info('%s %s %s %s  %s', r.classification.padEnd(13), st, r.method.padEnd(6), r.name, r.url);
         if (r.classification === 'FAIL' || r.classification === 'WARN') {
             logger.info('              %s', r.snippet);
         }

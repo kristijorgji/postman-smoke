@@ -18,4 +18,5 @@ export {
 } from '@src/config';
 export { apiFetch } from '@src/http/client';
 export { logger } from '@src/logger';
+export { renderHtmlReport, writeHtmlReport } from '@src/report/html';
 export { runSmoke } from '@src/runner';

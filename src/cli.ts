@@ -19,11 +19,14 @@ command
     .name('postman-smoke')
     .description('Run an ordered Postman collection smoke suite')
     .option('--strict', 'treat WARN as failure', false)
+    .option('--report-html <path>', 'write an HTML report to this path')
     .requiredOption('--config <path>', 'path to smoke.config.ts / .js / .json')
-    .action(async (args: { strict?: boolean; config: string }) => {
+    .action(async (args: { strict?: boolean; config: string; reportHtml?: string }) => {
         try {
             const input = await loadConfigModule(path.resolve(args.config));
-            const config = resolveConfig(input, Boolean(args.strict));
+            const config = resolveConfig(input, Boolean(args.strict), {
+                reportHtmlPath: args.reportHtml,
+            });
             const code = await runSmoke(config);
             process.exit(code);
         } catch (err) {

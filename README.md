@@ -63,6 +63,10 @@ Or call `runSmoke(resolveConfig(config, strict))` from a small `tsx` entry.
 | `leftoverScore`                 | Order for requests missing from `order.json`     |
 | `resolveAuthorization`          | Custom `Authorization` header resolution         |
 | `extraResults`                  | Append synthetic probes to the report            |
+| `reportHtmlPath`                | Optional path for a self-contained HTML report   |
+
+CLI also accepts `--report-html <path>` (overrides config). Console output always
+includes the full request URL next to each result row.
 
 Core classification has **no** product-specific path heuristics. Put admin/CMS/sitemap
 (or any other) rules in `classifyRules` or a plugin `classify` hook.

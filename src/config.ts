@@ -60,6 +60,8 @@ export type SmokeConfigInput = {
         config: ResolvedSmokeConfig,
     ) => string | undefined;
     extraResults?: (ctx: SmokeContext) => Promise<SmokeResult[]>;
+    /** When set, write a self-contained HTML report to this path after the run. */
+    reportHtmlPath?: string;
 };
 
 export type ResolvedSmokeConfig = Required<
@@ -80,13 +82,18 @@ export type ResolvedSmokeConfig = Required<
         config: ResolvedSmokeConfig,
     ) => string | undefined;
     extraResults?: (ctx: SmokeContext) => Promise<SmokeResult[]>;
+    reportHtmlPath?: string;
 };
 
 export function defineConfig(config: SmokeConfigInput): SmokeConfigInput {
     return config;
 }
 
-export function resolveConfig(input: SmokeConfigInput, strictFlag: boolean): ResolvedSmokeConfig {
+export function resolveConfig(
+    input: SmokeConfigInput,
+    strictFlag: boolean,
+    overrides: { reportHtmlPath?: string } = {},
+): ResolvedSmokeConfig {
     return {
         collectionPath: input.collectionPath,
         orderPath: input.orderPath,
@@ -104,5 +111,6 @@ export function resolveConfig(input: SmokeConfigInput, strictFlag: boolean): Res
         leftoverScore: input.leftoverScore,
         resolveAuthorization: input.resolveAuthorization,
         extraResults: input.extraResults,
+        reportHtmlPath: overrides.reportHtmlPath ?? input.reportHtmlPath,
     };
 }

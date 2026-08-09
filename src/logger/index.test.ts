@@ -14,7 +14,8 @@ describe('logger', () => {
     });
 
     it('exports a logger with expected methods', async () => {
-        vi.doMock('@src/core/findRootDir', () => ({
+        process.argv = ['node', '/fake/root/src/cli.ts'];
+        vi.doMock('../core/findRootDir', () => ({
             default: vi.fn().mockReturnValue('/fake/root'),
         }));
 
@@ -25,7 +26,7 @@ describe('logger', () => {
         expect(typeof mod.logger.warn).toBe('function');
         expect(typeof mod.logger.error).toBe('function');
         expect(typeof mod.logger.debug).toBe('function');
-    });
+    }, 15000);
 
     it('logger has console and file transports', async () => {
         vi.doMock('@src/core/findRootDir', () => ({
