@@ -1,0 +1,10 @@
+---
+description: Git commit conventions using Conventional Commits
+alwaysApply: true
+---
+
+# Git commit conventions
+
+When writing or suggesting commit messages, read and follow:
+
+- [.agents/skills/commit-message/SKILL.md](../../.agents/skills/commit-message/SKILL.md)

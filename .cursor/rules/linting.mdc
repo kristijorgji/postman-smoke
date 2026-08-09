@@ -1,0 +1,10 @@
+---
+description: Lint and fix after editing repo files
+alwaysApply: true
+---
+
+# Lint and fix after changes
+
+After editing repo files, read and follow:
+
+- [.agents/skills/linting/SKILL.md](../../.agents/skills/linting/SKILL.md)

@@ -1,0 +1,37 @@
+# .aiignore Source of truth for agent hard-ignore patterns. Tool-specific names are symlinks here:
+# .cursorignore, .codeiumignore, .aiexclude, .clineignore, .geminiignore → .aiignore
+#
+# Do NOT ignore .agents/skills/vendor/ — agents must read skills synced from @kristijorgji/*.
+
+# Dependencies and build
+node_modules/
+dist/
+
+# Test artifacts
+coverage/
+__snapshots__/
+*.snap
+
+# Git hooks
+.husky/
+
+# CI/CD
+.github/
+
+# Secrets and local env
+.env
+.env.*
+!.env.example
+
+# Scratch / local experiments
+.scratch/
+
+# IDE / editor
+.idea/
+.vscode/
+
+# Package manager / logs
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*

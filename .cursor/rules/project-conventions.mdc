@@ -1,0 +1,10 @@
+---
+description: Project conventions for layout, pnpm, and docs upkeep
+alwaysApply: true
+---
+
+# General project conventions
+
+Read and follow:
+
+- [.agents/skills/project-conventions/SKILL.md](../../.agents/skills/project-conventions/SKILL.md)

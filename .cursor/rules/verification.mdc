@@ -1,0 +1,10 @@
+---
+description: Post-change verification gate
+alwaysApply: true
+---
+
+# Post-Change Verification
+
+After completing ALL planned changes, read and follow:
+
+- [.agents/skills/verification/SKILL.md](../../.agents/skills/verification/SKILL.md)

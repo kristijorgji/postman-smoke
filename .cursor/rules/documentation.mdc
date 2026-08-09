@@ -1,0 +1,11 @@
+---
+description: Documentation placement for README and AGENTS
+globs: "**/*.md"
+alwaysApply: false
+---
+
+# Documentation
+
+Read and follow:
+
+- [.agents/skills/documentation/SKILL.md](../../.agents/skills/documentation/SKILL.md)

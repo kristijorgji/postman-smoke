@@ -1,0 +1,11 @@
+---
+description: TypeScript best practices for this boilerplate
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript
+
+Read and follow:
+
+- [.agents/skills/typescript-best-practices/SKILL.md](../../.agents/skills/typescript-best-practices/SKILL.md)
