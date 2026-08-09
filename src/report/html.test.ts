@@ -29,5 +29,9 @@ describe('renderHtmlReport', () => {
         expect(html).toContain('boom &lt;b&gt;');
         expect(html).toContain('FAIL');
         expect(html).toContain('OK=1');
+        expect(html).toContain('id="q"');
+        expect(html).toContain('id="classFilter"');
+        expect(html).toContain('data-col=');
+        expect(html).toContain('applyFilter');
     });
 });
