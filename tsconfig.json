@@ -12,6 +12,8 @@
         "lib": ["ES2022"],
         "rootDir": "./src",
         "skipLibCheck": true,
+        "declaration": true,
+        "declarationMap": true,
         "paths": { "@src/*": ["./src/*"] }
     },
     "include": ["./src"],

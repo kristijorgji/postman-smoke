@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import findRootDir from '@src/core/findRootDir';
 
 function createTempDirTree(): { rootDir: string; nestedDir: string } {
-    const tmpBase = fs.mkdtempSync(path.join(os.tmpdir(), 'tax-helper-root-'));
+    const tmpBase = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-root-'));
     const rootDir = path.join(tmpBase, 'project-root');
     const nestedDir = path.join(rootDir, 'a', 'b', 'c');
 
@@ -20,14 +20,12 @@ function createTempDirTree(): { rootDir: string; nestedDir: string } {
 describe('findRootDir', () => {
     it('finds the directory containing the marker file when searching upwards', () => {
         const { rootDir, nestedDir } = createTempDirTree();
-
         const found = findRootDir(nestedDir, '.root');
-
         expect(path.resolve(found)).toBe(path.resolve(rootDir));
     });
 
     it('throws when no directory in the chain contains the marker file', () => {
-        const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tax-helper-no-root-'));
+        const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-no-root-'));
         const nested = path.join(tmp, 'x', 'y');
         fs.mkdirSync(nested, { recursive: true });
 

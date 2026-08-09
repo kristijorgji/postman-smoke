@@ -1,6 +1,7 @@
 # Agent guide
 
-TypeScript Node.js / CLI boilerplate (Vitest, ESLint, pnpm).
+Reusable Postman smoke runner (`@kristijorgji/postman-smoke`), bootstrapped from
+ts-boilerplate (Vitest, ESLint, pnpm).
 
 ## Read first
 
@@ -28,12 +29,16 @@ Cursor rules under [`.cursor/rules/`](.cursor/rules/) are lean wrappers that
 
 ## Layout
 
-| Path           | Role                   |
-| -------------- | ---------------------- |
-| `src/core/`    | Shared infrastructure  |
-| `src/logger/`  | Winston logger         |
-| `src/scripts/` | Standalone CLI scripts |
-| `__tests__/`   | Shared test helpers    |
+| Path              | Role                          |
+| ----------------- | ----------------------------- |
+| `src/collection/` | Flatten / order / classify    |
+| `src/runner.ts`   | Ordered HTTP suite + plugins  |
+| `src/cli.ts`      | `postman-smoke` CLI           |
+| `src/config.ts`   | `defineConfig` / plugin types |
+| `src/http/`       | Thin fetch wrapper            |
+| `src/logger/`     | Winston logger                |
+| `bin/`            | CLI shim                      |
+| `__tests__/`      | Shared test helpers           |
 
 ## Quality before finishing work
 

@@ -1,23 +1,43 @@
 {
-    "name": "ts-boilerplate",
-    "description": "ts-boilerplate",
+    "name": "@kristijorgji/postman-smoke",
+    "description": "Reusable Postman collection smoke runner (ordered HTTP suite with plugins)",
     "author": "Kristi Jorgji",
     "private": true,
+    "version": "0.1.0",
     "engines": {
         "node": ">=22.16.0"
     },
+    "bin": {
+        "postman-smoke": "./bin/postman-smoke.mjs"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "bin",
+        "dist",
+        "src",
+        "README.md"
+    ],
     "scripts": {
-        "prepare": "husky && node scripts/sync-agent-skills.mjs",
+        "prepare": "husky && node scripts/sync-agent-skills.mjs && pnpm run build",
         "test": "vitest",
         "test:run": "vitest run",
         "test:coverage": "vitest run --coverage",
-        "start": "tsx -r dotenv/config src/index.ts",
+        "start": "tsx -r dotenv/config src/cli.ts",
+        "smoke": "tsx src/cli.ts",
         "lint": "eslint . --max-warnings 0",
         "fix": "eslint . --fix --max-warnings 0",
         "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.eslint.json",
         "build": "tsc && tsc-alias -p tsconfig.json",
-        "clean": "rimraf dist",
-        "script:example": "tsx -r dotenv/config src/scripts/example.ts"
+        "clean": "rimraf dist"
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [
