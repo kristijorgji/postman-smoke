@@ -61,7 +61,7 @@
         "@vitest/coverage-v8": "^5.1.1",
         "eslint": "^10.15.0",
         "husky": "^9.1.7",
-        "lint-staged": "^17.6.1",
+        "lint-staged": "^17.6.2",
         "prettier": "^3.10.1",
         "rimraf": "^6.1.4",
         "tsc-alias": "^1.9.10",
