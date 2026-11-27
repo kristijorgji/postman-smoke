@@ -57,7 +57,7 @@
         "@commitlint/cli": "^21.2.4",
         "@commitlint/config-conventional": "^21.2.4",
         "@kristijorgji/eslint-config-typescript": "^1.2.3",
-        "@types/node": "^26.6.6",
+        "@types/node": "^26.6.7",
         "@vitest/coverage-v8": "^5.1.1",
         "eslint": "^10.15.0",
         "husky": "^9.1.7",
